@@ -8,34 +8,40 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            var result = Task.WhenAll(getPostId4(), getPostId5(), 
+            /*var result = Task.WhenAll(getPostId4(), getPostId5(), 
                                       getPostId6(), getPostId7(), 
                                       getPostId8(), getPostId9(), 
                                       getPostId10(), getPostId11(), 
-                                      getPostId12(), getPostId13());
-         
+                                      getPostId12(), getPostId13());*/
+            var result = Task.WhenAll(getPostId("4"), getPostId("5"), getPostId("6"));
+
             var array = result.Result;
             foreach (var item in array)  Console.WriteLine(item);
 
         }
         HttpClient client = new HttpClient();
-        HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "https://jsonplaceholder.typicode.com");
-
-
+        
 
         //static readonly 
-        HttpClient httpClient = new HttpClient();
+        static HttpClient httpClient = new HttpClient();
+        static Uri Uri = new Uri("https://jsonplaceholder.typicode.com");
+        
 
         static async Task<string> getPostId(string id)
         {
             try
             {
-                HttpCompletionOption option = new HttpCompletionOption();
-                option = HttpCompletionOption.ResponseHeadersRead;
-                
-                HttpResponseMessage response = await httpClient.GetAsync("https://jsonplaceholder.typicode.com",);
-                response.EnsureSuccessStatusCode();
-                string responseBody = await response.Content.ReadAsStringAsync();
+                //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, "/posts/{id}");
+                //HttpCompletionOption option = new HttpCompletionOption();
+                //option = HttpCompletionOption.ResponseHeadersRead;
+                httpClient.BaseAddress = Uri;
+                // HttpResponseMessage response = await httpClient.GetAsync("https://jsonplaceholder.typicode.com");
+                HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, $"/posts/{id}");
+                //response.EnsureSuccessStatusCode();
+                //string responseBody = await response.Content.ReadAsStringAsync();
+
+                //request.EnsureSuccessStatusCode();
+                string responseBody = await request.Content.ReadAsStringAsync();
                 return responseBody;
             }
             catch
@@ -49,7 +55,7 @@ namespace ConsoleApp1
 
 
 
-        static async Task<string> getPostId4()
+        /*static async Task<string> getPostId4()
         {
             try
             {
@@ -188,7 +194,7 @@ namespace ConsoleApp1
             {
                 return null;
             }
-        }
+        }*/
     }
 
 }
