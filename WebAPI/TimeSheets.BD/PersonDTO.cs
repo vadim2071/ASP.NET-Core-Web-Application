@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TimeSheets.BD
 {
-    internal class Person
+    internal class PersonDTO
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
