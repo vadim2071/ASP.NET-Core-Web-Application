@@ -28,8 +28,9 @@ namespace TimeSheets.main.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<Person> Get()
+        [HttpGet("{id}")]
+
+        public IEnumerable<Person> Get(id)
         {
             
         }
