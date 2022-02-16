@@ -30,7 +30,7 @@ namespace TimeSheets.main.Controllers
 
         [HttpGet("{id}")]
 
-        public IEnumerable<Person> Get(id)
+        public async Task<IActionResult> Get()
         {
             
         }
