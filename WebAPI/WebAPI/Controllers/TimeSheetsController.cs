@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TimeSheets.BL;
+using TimeSheets.Models;
 
 
 //GET /persons/search?searchTerm={term} — поиск человека по имени
@@ -28,9 +28,9 @@ namespace TimeSheets.main.Controllers
             _logger = logger;
         }
 
-        [HttpGet("{id}")]
-
-        public async Task<IActionResult> Get()
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> Get(int id)
         {
             
         }

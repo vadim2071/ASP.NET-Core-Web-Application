@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -10,7 +10,7 @@
 	
 	<ItemGroup>
 	  <ProjectReference Include="..\TimeSheets.BD\TimeSheets.BD.csproj" />
-	  <ProjectReference Include="..\TimeSheets.BL\TimeSheets.BL.csproj" />
+	  <ProjectReference Include="..\TimeSheets.BL\TimeSheets.Models.csproj" />
 	</ItemGroup>
 
 

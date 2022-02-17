@@ -9,12 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheets.main", "WebAPI\T
 		{A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B} = {A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheets.BL", "TimeSheets.BL\TimeSheets.BL.csproj", "{A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B}"
-	ProjectSection(ProjectDependencies) = postProject
-		{56ED8B02-21A3-4AFD-8652-9D1B022305DB} = {56ED8B02-21A3-4AFD-8652-9D1B022305DB}
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheets.Models", "TimeSheets.BL\TimeSheets.Models.csproj", "{A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeSheets.BD", "TimeSheets.BD\TimeSheets.BD.csproj", "{56ED8B02-21A3-4AFD-8652-9D1B022305DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeSheets.BD", "TimeSheets.BD\TimeSheets.BD.csproj", "{56ED8B02-21A3-4AFD-8652-9D1B022305DB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B} = {A1E8169A-D2C7-4BC1-B327-B9B55DFFB35B}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

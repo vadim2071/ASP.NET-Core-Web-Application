@@ -1,7 +1,7 @@
 ﻿using System;
-using TimeSheets.BD;
 
-namespace TimeSheets.BL
+
+namespace TimeSheets.Models
 {
     public class Person
     {
