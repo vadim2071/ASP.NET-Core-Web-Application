@@ -30,9 +30,10 @@ namespace TimeSheets.main.Controllers
 
         [HttpGet]
         [Route("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public Task<IActionResult> Get(int id)
         {
-            
+            Person _person = new Person("asdas", "asds", "asdas", "kjsa", 34);
+            return "jr";
         }
     }
 }
