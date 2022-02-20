@@ -7,11 +7,12 @@ using TimeSheets.Models;
 
 namespace TimeSheets.BD
 {
-    internal interface IRepository
+    public interface IRepository<T> where T : class
     {
         bool Delete (int id);
-        bool Update(Person item);
-        bool New(Person item);
+        bool Update(T item);
+        bool New(T item);
+        bool GetAll();
 
     }
 }

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TimeSheets.Models;
+using TimeSheets.BD;
 
 
 //GET /persons/search?searchTerm={term} — поиск человека по имени
@@ -20,20 +21,38 @@ namespace TimeSheets.main.Controllers
     [Route("[controller]")]
     public class TimeSheetsController : ControllerBase
     {
+        private readonly IRepository<Person> _repository;
 
-        private readonly ILogger<TimeSheetsController> _logger;
 
-        public TimeSheetsController(ILogger<TimeSheetsController> logger)
-        {
-            _logger = logger;
-        }
 
         [HttpGet]
         [Route("{id}")]
-        public Task<IActionResult> Get(int id)
-        {
-            Person _person = new Person("asdas", "asds", "asdas", "kjsa", 34);
-            return "jr";
-        }
+        public IActionResult Persons([FromRoute] int id) =>
+            _repository.GetAll().FirstOrDefault(p => p.Id == id) is Person person ?
+            Ok(person) : (IActionResult)NotFound();
+
+        [HttpGet]
+        [Route("search")]
+        public IActionResult Persons([FromQuery] string searchTerm) =>
+            _repository.GetAll().FirstOrDefault(p => p.FirstName == searchTerm) is Person person ?
+            Ok(person) : (IActionResult)NotFound();
+
+        [HttpGet]
+        public IActionResult Persons(PersonPageNavDto personPageNav) =>
+            Ok(_repository.GetAll().Skip(personPageNav.Skip).Take(personPageNav.Take));
+
+        [HttpPost]
+        public IActionResult PersonsAdd([FromBody] Person person) =>
+            _repository.New(person) ? (IActionResult)Ok() : Conflict("id person is already created.");
+
+
+        [HttpPut]
+        public IActionResult PersonsUpdate([FromBody] Person person) =>
+            _repository.Update(person) ? (IActionResult)Ok() : NotFound();
+
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult PersonsDelete([FromRoute] int key) =>
+            _repository.Delete(key) ? (IActionResult)Ok() : NotFound();
     }
 }
